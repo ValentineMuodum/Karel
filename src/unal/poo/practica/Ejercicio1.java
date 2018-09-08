@@ -1,7 +1,7 @@
 package unal.poo.practica;
 
 import becker.robots.*;
-
+import java.util.*;
 /** 
  * Practica de los conceptos de Programacion Estructurada
  * @author Fabian Andres Giraldo */
@@ -12,37 +12,116 @@ public class Ejercicio1
         public static City objetos;
         public static Robot estudiante;
         
-	public static void main (String[] args){
+    
+   
+        public ZonaParqueo zona1=new ZonaParqueo(5);
+        public ZonaParqueo zona2=new ZonaParqueo(5);
+        public ZonaParqueo zona3=new ZonaParqueo(5);
+
+
+        public int AsignacionZona(){
+             
+            int carroszona1=zona1.CantidadCarros(zona1.getLugares(),5);
+            int carroszona2=zona2.CantidadCarros(zona2.getLugares(),5);
+            int carroszona3=zona3.CantidadCarros(zona3.getLugares(),5);
+            
+            if(carroszona1!=5&&carroszona1==carroszona2&&carroszona1==carroszona3&&carroszona2==carroszona3){
+                return 1;
+            }
+        if(carroszona1!=5&&carroszona1<carroszona2&&carroszona1<carroszona3){
+            return 1;
+        }
+        if(carroszona2!=5&&carroszona2<carroszona1&&carroszona2<carroszona3){
+            return 2;
+        }
+        if(carroszona3!=5&&carroszona3<carroszona1&&carroszona3<carroszona2){
+            return 3;
+        }
+        if(carroszona2!=5){
+            return 2;
+        }
+        if (carroszona3!=5) {
+             return 3;
+            }else{
+            return 0;
+        }
+        }
+        
+         public boolean Ingresarauto(String placa){
+         int zona=AsignacionZona();
+         Posicion colocar=new Posicion(true, 0);
+         colocar.setPlacaactual(placa);
+         if(zona==0){
+            return false;
+        }
+        switch(zona){
+            case 1:
+                if(zona1.CantidadCarros(zona1.getLugares(),5)==0){
+                zona1.setP1(colocar);
+                 return true;
+                }else if(zona1.CantidadCarros(zona1.getLugares(),5)==1){
+                zona1.setP2(colocar);
+                 return true;
+                }else if(zona1.CantidadCarros(zona1.getLugares(),5)==2){
+                zona1.setP3(colocar);
+                 return true;
+                }else if(zona1.CantidadCarros(zona1.getLugares(),5)==3){
+                zona1.setP4(colocar);
+                 return true;
+                }else if(zona1.CantidadCarros(zona1.getLugares(),5)==4){
+                zona1.setP5(colocar);
+                 return true;
+                }
+                break;
+            case 2:
+               if(zona2.CantidadCarros(zona2.getLugares(),5)==0){
+                zona2.setP1(colocar);
+                 return true;
+                }else if(zona2.CantidadCarros(zona2.getLugares(),5)==1){
+                zona2.setP2(colocar);
+                 return true;
+                }else if(zona2.CantidadCarros(zona2.getLugares(),5)==2){
+                zona2.setP3(colocar);
+                 return true;
+                }else if(zona2.CantidadCarros(zona2.getLugares(),5)==3){
+                zona2.setP4(colocar);
+                 return true;
+                }else if(zona2.CantidadCarros(zona2.getLugares(),5)==4){
+                zona2.setP5(colocar);
+                 return true;
+                }
+                break; 
+            case 3:
+                if(zona3.CantidadCarros(zona3.getLugares(),5)==0){
+                zona3.setP1(colocar);
+                 return true;
+                }else if(zona3.CantidadCarros(zona3.getLugares(),5)==1){
+                zona3.setP2(colocar);
+                 return true;
+                }else if(zona3.CantidadCarros(zona3.getLugares(),5)==2){
+                zona3.setP3(colocar);
+                 return true;
+                }else if(zona3.CantidadCarros(zona3.getLugares(),5)==3){
+                zona3.setP4(colocar);
+                 return true;
+                }else if(zona3.CantidadCarros(zona3.getLugares(),5)==4){
+                zona3.setP5(colocar);
+                 return true;
+                }
+                break;
+             
+        
+        }
+        return false;
+         }
+
+         
+        public static void main (String[] args){
             //Declarar la creacion de la ciudad
             objetos = new City("Field.txt");
 	    objetos.showThingCounts(true);
+            estudiante = new Robot(objetos,0, 0, Direction.EAST,10);
+            Scanner S=new Scanner(System.in);
             
-            //Direction.NORTH, EAST, SOUTH, WEST
-            //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
-            estudiante = new Robot(objetos,1, 2, Direction.WEST,10);
-           for(int i=0;i<2;i++){
-            estudiante.move();
-            estudiante.turnLeft();
-        }
-         estudiante.move();
-         if(estudiante.canPickThing()==true){
-         estudiante.pickThing();
-        }
-        for(int i=0;i<2;i++){
-         estudiante.turnLeft();
-        }
-        for(int i=0;i<2;i++){
-            estudiante.move();
-            for(int j=0;j<=2;j++){
-            estudiante.turnLeft();
-        }
-        }
-        estudiante.move();
-        }
-        
-        public static void creacionFuncion(int parametroEntrada){
-            for (int i = 0; i < parametroEntrada; i++) 
-                estudiante.move();
-        }
 }
-
+}
