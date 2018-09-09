@@ -303,10 +303,10 @@ public class Parqueadero {
 
     }
 
-    public void InformacionZona(ZonaParqueo zonaaevaluar) {
+    public void InformacionZona(ZonaParqueo zonaaevaluar,int numero) {
         
-            System.out.println("Informacion");
-            
+            System.out.print("Informacion Zona ");
+            System.out.println(numero);
             for (int i = 0; i < 5; i++) {
             System.out.print("Posicion ");
                 System.out.println(i+1);
@@ -390,6 +390,7 @@ public class Parqueadero {
                 for (int i = 0; i < 5; i++) {
                     if (zona1.lugares[i].getPlacaactual().equals(placa)&&zona1.lugares[i].getPlacaactual()!=null) {
                         ComoSacar(karel,numeroZona,Invocador,zona1, zonaaux, i + 1, hora,tarifa);
+                        Invocador.InformacionZona(zona1,1);
                         return true;
                     }
                 }
@@ -432,10 +433,18 @@ public class Parqueadero {
         boolean y = true;
         //Ciclo de simulacion del dia
         Scanner S = new Scanner(System.in);
-         String placa;
+        Scanner A = new Scanner(System.in);
+        Scanner Y = new Scanner(System.in);
+        String placa;
          int Operacion;
          int Ingreasarzona;
-        for (int hora = 0;y==true ; hora++) {
+         int ejecutable=0;
+         System.out.println("Desea usted");
+         System.out.println("1.Administrar el parqueadero");
+         System.out.println("2.Ejecutar una simulacion");
+         ejecutable=A.nextInt();
+         if(ejecutable==1){
+         for (int hora = 0;y==true ; hora++) {
             if(hora==0){
             System.out.println("Bienvenido al parqueadero");
             }
@@ -452,7 +461,7 @@ public class Parqueadero {
             switch(Operacion){
                 case 1:
                     System.out.print("Ingrese su placa: ");
-                    placa=S.nextLine();
+                    placa=Y.nextLine();
                   if(zona1.CantidadCarros(zona1.lugares,5)+zona1.CantidadCarros(zona1.lugares,5)+zona1.CantidadCarros(zona1.lugares,5)<15){
                   Invocador.Ingresarauto(Invocador, estudiante, placa, zona1, zona2, zona3, hora);
             }else{
@@ -461,7 +470,7 @@ public class Parqueadero {
             break;
                 case 2:
                     System.out.print("Ingrese su placa: ");
-                    placa=S.nextLine();
+                    placa=Y.nextLine();
                     System.out.println("Ingrese la zona donde se encuentra el vehiculo");
                     Ingreasarzona=S.nextInt();
                     if(zona1.CantidadCarros(zona1.lugares,5)+zona1.CantidadCarros(zona1.lugares,5)+zona1.CantidadCarros(zona1.lugares,5)>1){
@@ -472,13 +481,13 @@ public class Parqueadero {
             break;
                  case 3:
                      System.out.print("Que seccion desea mirar: ");
-                     Ingreasarzona=S.nextInt();
+                     Ingreasarzona=Y.nextInt();
                      if(Ingreasarzona==1){
-                     Invocador.InformacionZona(zona1);
+                     Invocador.InformacionZona(zona1,1);
                      }else if(Ingreasarzona==2){
-                     Invocador.InformacionZona(zona2);
+                     Invocador.InformacionZona(zona2,2);
                      }else if(Ingreasarzona==3){
-                     Invocador.InformacionZona(zona3);
+                     Invocador.InformacionZona(zona3,3);
                      }else{
                          System.out.println("Zona no valida");
                      }
@@ -493,6 +502,36 @@ public class Parqueadero {
        
         
     }
- System.out.println("Programa Finalizado con exito");
+        
+ 
+        }
+        else if(ejecutable==2){
+    for(int i=0;i<=10;i++){
+   if(i==0){
+        Invocador.Ingresarauto(Invocador, estudiante, "ERT 654", zona1, zona2, zona3, i);
+         }
+if(i==1){
+      Invocador.Ingresarauto(Invocador, estudiante, "ADZ 387", zona1, zona2, zona3, i);  
+    }
+if(i==7){
+  Invocador.SacarVehiculo(estudiante, Invocador, i, "ADZ 387", 2, zona1, zona2, zona3, zona3, tarifaxhora);  
 }
+if(i==9){
+  Invocador.SacarVehiculo(estudiante, Invocador, i, "ERT 654", 1, zona1, zona2, zona3, zona3, tarifaxhora);  
+}
+if(i==10){
+    Invocador.Ingresarauto(Invocador, estudiante, "XOZ 219", zona1, zona2, zona3, i);
+}
+    if(i!=0&&i!=1&&i!=10){
+    Invocador.Ingresarauto(Invocador, estudiante, "GHZ 901", zona1, zona2, zona3, i);
+    }
+    }
+    Invocador.InformacionZona(zona1,1);
+    Invocador.InformacionZona(zona2,2);
+    Invocador.InformacionZona(zona3,3);
+        System.out.println("Total ganancias");    
+    System.out.println(Invocador.TotalProducido(zona1, zona2, zona3, tarifaxhora));
+    }
+System.out.println("Programa Finalizado con exito");
+    }
 }
