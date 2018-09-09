@@ -10,26 +10,27 @@ package unal.poo.practica;
  * @author Valentine Chimezie
  */
 public class ZonaParqueo {
-    private float totalproducido;
+    private int totalminutos;
     public Posicion p1=new Posicion(false, 0);
     public Posicion p2=new Posicion(false, 0);
     public Posicion p3=new Posicion(false, 0);
     public Posicion p4=new Posicion(false, 0);
     public Posicion p5=new Posicion(false, 0);
     public Posicion lugares[]={p1,p2,p3,p4,p5};        
-    public ZonaParqueo(float totalproducido) {
-        this.totalproducido = totalproducido;
+    public ZonaParqueo(int totalminutos) {
+        this.totalminutos = totalminutos;
         
     }
 
-    public float getTotalproducido() {
-        return totalproducido;
+    public int getTotalminutos() {
+        return totalminutos;
     }
 
-    public void setTotalproducido(float totalproducido) {
-        this.totalproducido = totalproducido;
+    public void setTotalminutos(int totalminutos) {
+        this.totalminutos = totalminutos;
     }
 
+   
     public Posicion[] getLugares() {
         return lugares;
     }
@@ -89,4 +90,8 @@ public class ZonaParqueo {
         return n;
     }
         
+
+
+
 }
+

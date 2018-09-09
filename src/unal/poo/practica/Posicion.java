@@ -12,12 +12,12 @@ package unal.poo.practica;
 public class Posicion {
     private String placaactual;
     private boolean estado;
-    private int minutos;
+    private int horaentrada;
 
-    public Posicion(boolean estado, int minutos) {
+    public Posicion(boolean estado, int horaentrada) {
         
         this.estado = estado;
-        this.minutos = minutos;
+        this.horaentrada = horaentrada;
     }
 
    
@@ -38,13 +38,15 @@ public class Posicion {
         this.estado = estado;
     }
 
-    public int getMinutos() {
-        return minutos;
+    public int getHoraentrada() {
+        return horaentrada;
     }
 
-    public void setMinutos(int minutos) {
-        this.minutos = minutos;
+    public void setHoraentrada(int horaentrada) {
+        this.horaentrada = horaentrada;
     }
+
+    
     
      
        
